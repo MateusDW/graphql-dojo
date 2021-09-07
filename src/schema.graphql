@@ -1,0 +1,49 @@
+enum Gender {
+  male
+  female
+}
+
+type Wand {
+  wood: String
+  core: String
+  length: Float
+}
+
+type Character {
+  id: ID!
+  name: String
+  species: String
+  gender: Gender
+  house: String
+  ancestry: String
+  eyeColour: String
+  hairColour: String
+  wand: Wand
+  patronus: String
+  hogwartsStudent: Boolean
+  hogwartsStaff: Boolean
+  alive: Boolean
+}
+
+input CharacterCreation {
+  name: String!
+  species: String!
+  gender: Gender!
+  ancestry: String
+  eyeColour: String
+  hairColour: String
+}
+
+type Query {
+  characters: [Character!]!
+  character(id: ID!): Character
+  students: [Character!]!
+  staff: [Character!]!
+  nonRelatedToHogwarts: [Character!]!
+}
+
+type Mutation {
+  createCharacter(character: CharacterCreation!): Character!
+  buyWand(id: ID!): Wand!
+  sortingCeremony(id: ID!): String!
+}
